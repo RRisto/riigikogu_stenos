@@ -18,7 +18,9 @@ I am using topic modelling solution from
 
 
 ## Usage
-- Clone repo: `git clone `
+- Clone repo: `git clone https://github.com/RRisto/riigikogu_stenos.git`
+
+Then build local environment or a docker container.
 
 #### Local environment
 - Install requirements from requirements.txt and run notebooks 
@@ -35,7 +37,7 @@ It might be easier to build docker image and run docker container (includes `jup
 "docker/run.bat" (or "docker/run.sh" for unix)</code></pre>
  On terminal you should see following link: 
 
- ![](images/server.png)
+ ![](https://github.com/RRisto/riigikogu_stenos/blob/master/images/server.PNG)
 
 Click on the one that starts with `http://127.0.0.1:8888...` 
   
