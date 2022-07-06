@@ -1,0 +1,1 @@
+docker build -t riigikogu -f docker/Dockerfile  .
