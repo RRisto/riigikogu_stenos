@@ -35,7 +35,7 @@ It might be easier to build docker image and run docker container (includes `jup
 - Build and run docker:
 <pre><code>"docker/build.bat" (or "docker/build.sh" for unix) 
 "docker/run.bat" (or "docker/run.sh" for unix)</code></pre>
- On terminal you should see following link: 
+ On terminal you should see the following lines: 
 
  ![](https://github.com/RRisto/riigikogu_stenos/blob/master/images/server.PNG)
 
