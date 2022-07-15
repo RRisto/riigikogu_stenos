@@ -30,3 +30,4 @@ __pycache__/
 /data/interim/stenos.csv
 /data/raw/stenos_from_links.json
 /0_7_analyze_parties_speakers_topics.ipynb
+/conf/
