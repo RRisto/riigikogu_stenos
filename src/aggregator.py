@@ -85,3 +85,98 @@ def create_plot_group_topvecs(df, n_topics, group_col='fation', topic_col='topic
     plot_heatmap(df_topic_cossim, figsize=figsize)
     if return_data:
         return df_group_topic_vecs, df_topic_cossim
+    
+    
+def plot_catplot(df, x_col, y_col, group_col, x_axis_label, savefig, 
+                 font_scale=1.2, sns_style='whitegrid', sharex=False,
+                 sharey=False, color='lightblue', col_wrap=2,
+                 height=2., aspect=2.5):
+    """plot seaborn catplot: individual barplots for each level of group_col
+    -INPUT:
+        - df: pd.DataFrame containing data
+        - x_col: str of column containing x-dimension data 
+        - y_col: str of column containing y-dimension data
+        - group_col: str of column containing  grouping variable
+        - x_axis_label: str of x-axis label,
+        - savefig: str of filename with path to save plot file
+        - font_scale: float with scale of the plot font
+        - sns_style: str of seaborn style
+        - sharex: bool, if True all subplots have same scale on x-axis
+        - sharey: bool, if True all subplots have same scale on y-axis
+        - color: str of color of bars
+        - col_wrap: int, in how many columns plots are organized
+        - height: float, height of plot (from matplotlib)
+        - aspect: float, aspect of plot (from matplotlib)
+     -OUTPUT:
+         plot with sub barplots (for each group_col level) and saved in savefig file"""
+    sns.set(font_scale = font_scale)
+    sns.set_style(sns_style)
+    ax=sns.catplot(
+        x=x_col,
+        y=y_col,
+        sharex=sharex,
+        sharey=sharey,
+        color=color,
+        col=group_col,
+        col_wrap=col_wrap, #Set the number of columns you want.
+        data=df,
+        kind='bar',
+        height=height,
+        aspect=aspect
+    )
+    ax.set_axis_labels(x_axis_label)
+    plt.savefig(savefig, bbox_inches='tight')
+    
+def plot_topic_time_dynamics(df, colors, cluster_id=None, cluster_col='topic_cluster', time_col='year', topic_col='topic_words3',
+                             figsize=(15,10), bbox_to_anchor=(1.09, 1.00), legend_fontsize=12,
+                             x_tick_fontsize=12, y_tick_fontsize=12, x_axis_fontsize=12,
+                             normalize_timesteps=False,
+                             use_percentage=True):
+    """function to plot topics time dynamics 
+    -INPUT:
+        -df: pd.DataFrame containing data, eahc row is some speaker text at some time
+        -colors: list of colors used for plotting
+        -cluster_id: if not None then int with topic cluster id used for plotting
+        -cluster_col: str: name of the data cluster column
+        -time_col: str of the data time column
+        -topic_col: str of the data topic column
+        -figsize: tuple of plot size
+        -bbox_to_anchor: tuple of legend position
+        -legend_fontsize: int of legend font size
+        -x_tick_fontsize: int of x-axis tick labels font size
+        -y_tick_fontsize: int of y-axis tick labels font size
+        -x_axis_fontsize: int of x-axis title font size
+        -normalize_timesteps: bool, if True normalizes data in each timestep (takes % of topics),
+            useful for stacked are chart
+        -use_percentage: bool, if not True counts each timestamp different topics and plots the scale of counts,
+            otherwise plots the scale as %
+    -OUTPUT:
+        -plot of df topics (of cluster topics) dynamics"""
+    fig, ax = plt.subplots(figsize=figsize)
+
+    if not normalize_timesteps:
+        df_topic_prop = df.groupby([time_col])[topic_col].\
+            value_counts(normalize = use_percentage).\
+            unstack()
+        #keep only cluster topics for plotting
+        if cluster_id is not None:
+            df=df[df[cluster_col]==cluster_id]
+        topic_cluster_names=df[topic_col].unique()
+        columns2keep = topic_cluster_names
+        df_topic_prop = df_topic_prop[columns2keep]
+        df_topic_prop = df_topic_prop.reindex(sorted(df_topic_prop.columns), axis=1)
+        ax = df_topic_prop.plot.area(ax=ax, color=colors)
+    
+    if normalize_timesteps:
+        if cluster_id is not None:
+            df=df[df[cluster_col]==cluster_id]
+        df_plot=df.groupby([time_col])[topic_col].\
+            value_counts(normalize = use_percentage).\
+            unstack()
+        df_plot = df_plot.reindex(sorted(df_plot.columns), axis=1)
+        df_plot.plot.area(ax=ax, color=colors)
+    
+    ax.tick_params(axis='x', labelsize=x_tick_fontsize)
+    ax.tick_params(axis='y', labelsize=y_tick_fontsize)
+    ax.xaxis.get_label().set_fontsize(x_axis_fontsize)
+    ax.legend(bbox_to_anchor=bbox_to_anchor, fontsize=legend_fontsize)
