@@ -22,16 +22,18 @@ def get_group_topics_prop(df_w_factions, groupby_col, topic_col='topic_words3', 
     return df_fation_topics
 
 
-def create_group_vecs(df_topics, topic_col='topic_words3', group_col='fation', fillna=0):
+def create_group_vecs(df_topics, topic_col='topic_words3', group_col='fation', fillna=0, font_scale=1.):
     """create topic proportion vectors pd.DataFrame for each group value in group column
          -INPUT:
             - df_topics: pd.DataFrame with group and topic column, should come from get_group_topics_prop
             - group_col: str of colum name where grouping variable is
             - topic_col: str of column where topic names are
             - fillna: int, float with what missing data in tipic vectors is filled (if certain group doesn't
-            have data in a specific topic
+               have data in a specific topic
+            - font_scale: float of font sizes in plot
         -OUTPUT:
             -pd.DataFrame with topic proportion vectors for each group"""
+    sns.set(font_scale = font_scale)
     df_group_topic_vecs = df_topics[[group_col, topic_col, 'count']] \
         .pivot_table(values='count', index=topic_col, columns=group_col)
     if fillna is not None:
