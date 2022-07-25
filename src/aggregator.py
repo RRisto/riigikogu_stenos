@@ -65,7 +65,7 @@ def plot_heatmap(df, figsize=(7, 7)):
 
 
 def create_plot_group_topvecs(df, n_topics, group_col='fation', topic_col='topic_words3', fillna=0,
-                              figsize=(7, 7), return_data=True, fill_diag_value=0):
+                              figsize=(7, 7), return_data=True, fill_diag_value=0, font_scale=1.0):
     """create topic proportion vector for each group value in group column and plot each group vector similarity heatmap
     (similarity measure is cosine similarity)
      -INPUT:
@@ -78,11 +78,14 @@ def create_plot_group_topvecs(df, n_topics, group_col='fation', topic_col='topic
         - return_data: bool if data is returned
         - fill_diag_value: int, float value which diagonal elements are to be filled in similarity heatmap
             (diagonal values are all 1, sometimes good to fill with 0 so that plot colors would have more variability
+        - font_scale: float of plot font scale
     -OUTPUT:
         - groups topic proportions vectors similarity heatmap, if return_data, returns group topic proportions vectors
         and cosine similarity pd.DataFrame"""
+    
     df_topics = get_group_topics_prop(df, group_col, topic_col, n_topics)
-    df_group_topic_vecs = create_group_vecs(df_topics, topic_col=topic_col, group_col=group_col, fillna=fillna)
+    df_group_topic_vecs = create_group_vecs(df_topics, topic_col=topic_col, group_col=group_col, fillna=fillna, 
+                                            font_scale=font_scale)
     df_topic_cossim = calc_group_topic_vec_cossim(df_group_topic_vecs, fill_diag_value)
     plot_heatmap(df_topic_cossim, figsize=figsize)
     if return_data:
