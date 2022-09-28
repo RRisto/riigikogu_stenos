@@ -9,12 +9,19 @@ My analysis pipeline looks following:
 - `0_3_clean_text.ipynb` - do a bit of text cleaning
 - `0_4_add_factions.ipynb` - collect faction info and merge 
  it stenograms dataframe
-- `0.5_topic_modelling.ipynb` - topic modelling notebook you have to 
+- `0_5_train_wordvectors.ipynb` - prepare data and train wav2vec and fasttext wordvectors (needed in step 10)
+- `0.5_1_topic_modelling.ipynb` - topic modelling notebook you have to 
 implement yourself ([LDA](https://radimrehurek.com/gensim/models/ldamodel.html) might be
  a good start).
 I am using topic modelling solution from 
 [Feelingstream](https://www.feelingstream.com/). 
-- `0_6_analyze_topics.ipynb` - analyze topics, their yearly differences
+- `0_6_analyze_topics.ipynb` - analyze overall topics, their yearly differences
+- `0_7_analyze_parties_topics.ipynb` - analyze topics of parties, their differences
+- `0_8_analyze_speakers.ipynb` - analyze some speakers and their differences
+- `0_9_environment_topics_risto.ipynb` - analyze environment-related topics
+- `10_0_gender_bias_w2v.ipynb` - calculate wav2vec (trained in  `0_5_train_wordvectors.ipynb`) word embeddings gender bias scores 
+- `10_1_gender_bias_ft.ipynb` - calculate fasttext (trained in  `0_5_train_wordvectors.ipynb`) word embeddings gender bias scores 
+- `10_2_analyze_gender_bias.ipynb` - analyze gender biases of wav2vec and fasttext embeddings 
 
 
 ## Usage

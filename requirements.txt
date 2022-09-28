@@ -1,6 +1,9 @@
 beautifulsoup4==4.11.1
 chart-studio==1.1.0
 cython==0.29.30
+gensim==4.1.2
+estnltk==1.7.1
+gensim==4.1.2
 hdbscan
 matplotlib==3.5.1
 numpy==1.22.4
@@ -9,5 +12,6 @@ pandas==1.4.3
 plotly==5.8.2
 py7zr==0.19.0
 scipy==1.8.1
+scikit-learn==1.02
 seaborn==0.11.2
 umap-learn==0.5.3
