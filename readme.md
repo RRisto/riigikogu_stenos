@@ -64,5 +64,6 @@ If you run notebooks 0_1 - 0_4 yourself, you need to implement:
 I am using solutions from [Feelingstream](https://www.feelingstream.com/) 
 for above mentioned two tasks and thus are not public.
 
-If you just run notebooks from 0_6 - ... 
-data is in data folder, you can rerun the analysis.
+If you just run notebooks from 0_5 - ... 
+data is in data folder, you can rerun the analysis. Intermediate outputs (models, datafiles) are not included if they
+exceed github maximum file size limit
