@@ -1,4 +1,4 @@
-## Estonian Parliament (Riigikogu) stenograms topic analysis
+## Estonian Parliament (Riigikogu) stenograms (topic) analysis
 
 This is just a hobby project for collecting stenograms from 
 https://api.riigikogu.ee/swagger-ui.html and analyzing topics using simple NLP tools. 
