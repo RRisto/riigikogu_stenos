@@ -34,3 +34,5 @@ __pycache__/
 
 /wordvectors/
 /data/interim/stenos_cleaned_topics_vecs.csv
+/data/raw/stenos_from_links2022.json
+/data/interim/stenos2023.csv
