@@ -1,4 +1,8 @@
 puudutab
+lugupeetud
+olema
+olla
+peaks
 kiiresti
 leida
 avatud

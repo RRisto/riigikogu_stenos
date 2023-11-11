@@ -184,4 +184,6 @@ def plot_topic_time_dynamics(df, colors, cluster_id=None, cluster_col='topic_clu
     ax.tick_params(axis='x', labelsize=x_tick_fontsize)
     ax.tick_params(axis='y', labelsize=y_tick_fontsize)
     ax.xaxis.get_label().set_fontsize(x_axis_fontsize)
-    ax.legend(bbox_to_anchor=bbox_to_anchor, fontsize=legend_fontsize)
+    handles, labels = ax.get_legend_handles_labels()
+    ax.legend(handles[::-1], labels[::-1], bbox_to_anchor=(1.0, 1.0), fontsize=legend_fontsize)
+
