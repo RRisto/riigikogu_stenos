@@ -21,6 +21,11 @@ __pycache__/
 
 /0_5_2_trending.ipynb
 /0_5_1_topic_modelling.ipynb
+/0_5_0_get_embeddings_bge_m3_risto.ipynb
+/0_5_0_get_embeddings_e5_risto.ipynb
+/0_5_0_get_embeddings_v3_openai_risto.ipynb
+/0_5_1_train_topic_model_bge3.ipynb
+/0_5_1_train_topic_model_v3_risto.ipynb
 /src/trending.py
 /models/
 /data/interim/stenos_cleaned_topics.csv
